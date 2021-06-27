@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import PropTypes from 'prop-types';
 
 const PropsDemo = () => {
     const [ color, setColor ] = useState('white');
@@ -43,11 +44,11 @@ const PropsDemo = () => {
         <div className='main'>
             <div className='mainDiv'>
                 <div style={styles}>
-                <FunctionalComponent string='Will this display?' function={toggleColor} />
-                <FunctionalComponent string="G'day Bruce" function={toggleBackground} />
-                <FunctionalComponent string="Hello Bruce" function={toggleRadius} />
-                <FunctionalComponent string="Pip cock, Bruce" function={toggleStyle} />
-                <FunctionalComponent string="Blimey it's hot in here." function={toggleAlign} />
+                <FunctionalComponent string='Will this display?' function={toggleColor} selectedStyle={ color } />
+                <FunctionalComponent string="G'day Bruce" function={toggleBackground} selectedStyle={ backgroundColor }/>
+                <FunctionalComponent string="Hello Bruce" function={toggleRadius} selectedStyle={ borderRadius }/>
+                <FunctionalComponent string="Pip cock, Bruce" function={toggleStyle} selectedStyle={ borderStyle }/>
+                <FunctionalComponent string="Blimey it's hot in here." function={toggleAlign} selectedStyle={ textAlign }/>
                 </div>
             </div>
         </div>
@@ -57,10 +58,30 @@ const PropsDemo = () => {
 export default PropsDemo;
 
 const FunctionalComponent = (props) => {
+    const TinyComponent = (props) => {
+        return(
+            <div>
+                <p>The current style is { props.selectedStyle }</p>
+            </div>
+        )
+    };
     return(
         <div>
             <p>{props.string}</p>
             <button onClick={props.function}>Do the clicky thing here!</button>
+            <TinyComponent selectedStyle= { props.selectedStyle } />
         </div>
     );
 };
+
+FunctionalComponent.defaultProps = {
+    string: 'This is wild!',
+    function: () => console.log('Can I see this in my dev tools?'),
+    selectedStyle: 'What style?'
+}
+
+FunctionalComponent.propsTypes = {
+    string: PropTypes.string.isRequired,
+    function: PropTypes.func.isRequired,
+    selectedStyle: PropTypes.string.isRequired
+}
