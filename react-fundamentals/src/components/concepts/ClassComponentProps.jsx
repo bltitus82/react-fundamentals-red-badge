@@ -5,10 +5,26 @@ export default class ClassComponentProps extends Component {
         super(props);
         this.state = { 
             fruit: ["apple", "orange", "banana", "grape", "kiwi", "strawberry", "blueberry", "raspberry"], 
-            newFruit: [] 
+            newFruit: "" 
         }
+        this.addFruit = this.addFruit.bind(this);
     }
     
+    addNewFruit(event) {
+        event.preventDefault();
+        this.setState({
+            fruitBowl: [...this.state.fruit, this.state.newFruit],
+            newFruit: "",
+        }
+        )
+    }
+
+    combineFruit = () => {
+        this.setState(
+            {}
+        )
+    }
+
     render() {
         return (
             <div className="main">
