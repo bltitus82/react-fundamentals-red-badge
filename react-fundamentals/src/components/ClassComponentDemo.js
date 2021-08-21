@@ -3,17 +3,27 @@ import React, { Component } from 'react';
 export default class ClassComponentDemo extends Component {
     constructor(props) {
         super(props);
-        this.state = { simpleMessage: "Welcome user!!!" };
+        this.state = { count: 0 };
     }
 
+    incrementCount = () => {
+            console.log("increment called");
+        this.setState(
+            { count: this.state.count + 1 }
+        );
+    };
+
     render() {
+        console.log("render called");
         return (
             <div className="main">
                 <div className="mainDiv">
                     <ClassComponentNotes />
-                    <h4>
-                        {this.state.simpleMessage}
-                    </h4>
+                    <hr />
+                    <h3>Smash that like button!</h3>
+                    <button onClick={this.incrementCount}>
+                        Likes: {this.state.count}
+                    </button>
                 </div>
             </div>
         );
