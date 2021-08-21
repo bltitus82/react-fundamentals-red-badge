@@ -48,3 +48,11 @@ class FruitBowl extends Component {
         );
     }
 }
+
+const Fruit = (props) => {
+    return (
+        <div>
+            <h3>{props.passingFruit}</h3>
+        </div>
+    )
+}
