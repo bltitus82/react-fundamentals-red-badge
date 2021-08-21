@@ -4,16 +4,16 @@ export default class ClassComponentProps extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            fruit: ["apple", "orange", "banana", "grape", "kiwi", "strawberry", "blueberry", "raspberry"], 
+            fruitBowl: ["apple", "orange", "banana", "grape", "kiwi", "strawberry", "blueberry", "raspberry"], 
             newFruit: "" 
         }
         this.addFruit = this.addFruit.bind(this);
     }
     
-    addNewFruit(event) {
+    addFruit(event) {
         event.preventDefault();
         this.setState({
-            fruitBowl: [...this.state.fruit, this.state.newFruit],
+            fruitBowl: [...this.state.fruitBowl, this.state.newFruit],
             newFruit: "",
         });
     }
@@ -27,10 +27,14 @@ export default class ClassComponentProps extends Component {
             <div className="main">
                 <div className="mainDiv">
                     <form> onSubmit={this.addFruit}
-                        <input type="text" value={this.state.newFruit}
-                        onChange={(event) => this.changeHandler(event)} />
+                        <input 
+                        type="text" 
+                        value={this.state.newFruit}
+                        onChange={(event) => this.changeHandler(event)} 
+                        />
                         <button type="submit">Add Fruit</button>
                     </form>
+                    <FruitBowl fruits={this.state.fruitBowl} />
                 </div>
             </div>
         );
@@ -42,7 +46,7 @@ class FruitBowl extends Component {
         return(
             <div>
                 {this.props.fruits.map((fruit) => {
-                    return <p>{fruit}</p>
+                    return <Fruit passingFruit={fruit} />;
                 })}
             </div>
         );
@@ -54,5 +58,5 @@ const Fruit = (props) => {
         <div>
             <h3>{props.passingFruit}</h3>
         </div>
-    )
-}
+    );
+};
