@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {FiThumbsUp, FiThumbsDown} from 'react-icons';
 
 export default class ClassComponentDemo extends Component {
     constructor(props) {
@@ -27,11 +28,12 @@ export default class ClassComponentDemo extends Component {
                 <div className="mainDiv">
                     <ClassComponentNotes />
                     <hr />
-                    <h3>Smash that like button!</h3>
+                    <h3>Like</h3>
                     <button onClick={this.incrementCount}>
-                        Likes: {this.state.count}
+                        <FiThumbsUp />
+                        {this.state.count}
                     </button>
-                    <h3>Click here to dislike.</h3>
+                    <FiThumbsDown />
                     <button onClick={this.decrementCount}>
                         Dislikes: {this.state.decrementCount}
                     </button>
