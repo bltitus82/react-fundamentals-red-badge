@@ -3,13 +3,20 @@ import React, { Component } from 'react';
 export default class ClassComponentDemo extends Component {
     constructor(props) {
         super(props);
-        this.state = { count: 0 };
+        this.state = { incrementCount: 0, decrementCount: 0 };
     }
 
     incrementCount = () => {
             console.log("increment called");
         this.setState(
-            { count: this.state.count + 1 }
+            { incrementCount: this.state.incrementCount + 1 }
+        );
+    };
+
+    decrementCount = () => {
+        console.log("decrement called");
+        this.setState(
+            { decrementCount: this.state.decrementCount - 1 }
         );
     };
 
@@ -23,6 +30,10 @@ export default class ClassComponentDemo extends Component {
                     <h3>Smash that like button!</h3>
                     <button onClick={this.incrementCount}>
                         Likes: {this.state.count}
+                    </button>
+                    <h3>Click here to dislike.</h3>
+                    <button onClick={this.decrementCount}>
+                        Dislikes: {this.state.decrementCount}
                     </button>
                 </div>
             </div>
