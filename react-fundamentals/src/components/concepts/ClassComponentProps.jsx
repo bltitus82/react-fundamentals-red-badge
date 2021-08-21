@@ -15,25 +15,35 @@ export default class ClassComponentProps extends Component {
         this.setState({
             fruitBowl: [...this.state.fruit, this.state.newFruit],
             newFruit: "",
-        }
-        )
+        });
     }
 
-    combineFruit = () => {
-        this.setState(
-            {}
-        )
+    changeHandler(event) {
+        this.setState({ newFruit: event.target.value });
     }
-
+    
     render() {
         return (
             <div className="main">
                 <div className="mainDiv">
-                    <form>
-                        <input type="text" value={this.state.newFruit} />
+                    <form> onSubmit={this.addFruit}
+                        <input type="text" value={this.state.newFruit}
+                        onChange={(event) => this.changeHandler(event)} />
                         <button type="submit">Add Fruit</button>
                     </form>
                 </div>
+            </div>
+        );
+    }
+}
+
+class FruitBowl extends Component {
+    render() {
+        return(
+            <div>
+                {this.props.fruits.map((fruit) => {
+                    return <p>{fruit}</p>
+                })}
             </div>
         );
     }
